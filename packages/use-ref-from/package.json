@@ -1,7 +1,7 @@
 {
   "name": "use-ref-from",
   "version": "0.0.0-0",
-  "description": "",
+  "description": "React.useRef with an immediate setter and read-only value.",
   "files": [
     "./lib/*"
   ],
