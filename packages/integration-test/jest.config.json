@@ -1,0 +1,9 @@
+{
+  "testMatch": [
+    "**/__tests__/**/*.?([cm])[jt]s?(x)",
+    "**/?(*.)+(spec|test).?([cm])[tj]s?(x)"
+  ],
+  "transform": {
+    "\\.mjsx?$": ["babel-jest"]
+  }
+}

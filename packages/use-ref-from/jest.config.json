@@ -1,0 +1,10 @@
+{
+  "transform": {
+    "\\.[jt]sx?$": [
+      "babel-jest",
+      {
+        "extends": "./babel.jest.config.json"
+      }
+    ]
+  }
+}

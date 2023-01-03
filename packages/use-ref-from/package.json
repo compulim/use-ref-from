@@ -1,0 +1,65 @@
+{
+  "name": "use-ref-from",
+  "version": "0.0.0-0",
+  "description": "",
+  "files": [
+    "./lib/*"
+  ],
+  "exports": {
+    ".": {
+      "import": "./lib/esmodules/index.js",
+      "require": "./lib/commonjs/index.js"
+    },
+    "./useRefFrom": {
+      "import": "./lib/esmodules/useRefFrom.js",
+      "require": "./lib/commonjs/useRefFrom.js"
+    }
+  },
+  "main": "./lib/commonjs/index.js",
+  "typings": "./lib/types/index.d.ts",
+  "scripts": {
+    "build": "npm run build:babel && npm run build:typescript",
+    "build:babel": "npm run build:babel:commonjs && npm run build:babel:esmodules",
+    "build:babel:commonjs": "babel src --config-file ./babel.commonjs.config.json --extensions .ts,.tsx --out-dir ./lib/commonjs/",
+    "build:babel:esmodules": "babel src --config-file ./babel.esmodules.config.json --extensions .ts,.tsx --out-dir ./lib/esmodules/",
+    "build:typescript": "tsc --project ./src/tsconfig.declaration.json",
+    "precommit": "eslint ./src/",
+    "prepack": "cp ../../CHANGELOG.md . && cp ../../LICENSE . && cp ../../README.md .",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/compulim/use-ref-from.git"
+  },
+  "keywords": [
+    "react",
+    "react-hook",
+    "react-hooks"
+  ],
+  "author": "William Wong (https://github.com/compulim)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/compulim/use-ref-from/issues"
+  },
+  "homepage": "https://github.com/compulim/use-ref-from#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.20.7",
+    "@babel/core": "^7.20.7",
+    "@babel/plugin-transform-runtime": "^7.19.6",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-typescript": "^7.18.6",
+    "@testing-library/react-hooks": "^8.0.1",
+    "@types/react": "^17.0.52",
+    "jest": "^29.3.1",
+    "jest-environment-jsdom": "^29.3.1",
+    "react": "^17.0.2",
+    "react-test-renderer": "^17.0.2",
+    "typescript": "^4.9.4"
+  },
+  "peerDependencies": {
+    "react": ">=16.9.0"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs3": "^7.20.7"
+  }
+}
