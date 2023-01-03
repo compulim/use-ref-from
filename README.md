@@ -47,9 +47,9 @@ const MyComponent = ({ message }: { message: string }) => {
 };
 ```
 
-### Decoupling `value` with `useRefFrom`
+### Decoupling mutation with `useRefFrom`
 
-Decoupling `value` from `useCallback` by `useRefFrom`. It also helps typing and read-only.
+Decoupling `message` from `useCallback` by `useRefFrom`. It also helps typing and immutability.
 
 ```tsx
 const MyComponent = ({ message }: { message: string }) => {
