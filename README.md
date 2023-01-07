@@ -80,6 +80,17 @@ function useRefFrom<T>(value: T): RefObject<T> & { get current(): T };
 
 The `RefObject<T>` returned by `useRefFrom()` will be read-only and cannot be set. This is by design.
 
+### Requires TypeScript 4.3
+
+If you see TypeScript compilation error related to `useRefFrom.d.ts`, please make sure you are using [TypeScript 4.3](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-3.html#separate-write-types-on-properties) or up.
+
+```
+node_modules/use-ref-from/lib/types/useRefFrom.d.ts:3:5 - error TS1131: Property or signature expected.
+
+3     get current(): T;
+      ~~~
+```
+
 ## Contributions
 
 Like us? [Star](https://github.com/compulim/use-ref-from/stargazers) us.
