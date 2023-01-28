@@ -82,9 +82,9 @@ jobs:
         run: |
           echo ::error::Cannot publish prerelease version ${{ steps.read-package-json.outputs.version }}
           exit 1
-      - run: npm publish `ls ./*.tgz`
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # - run: npm publish `ls ./*.tgz`
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Summarize job
         run: echo NPM package published to https://npmjs.com/package/${{ steps.read-package-json.outputs.package-name }}/v/${{ steps.read-package-json.outputs.version }}. >> $GITHUB_STEP_SUMMARY
 
@@ -102,3 +102,44 @@ jobs:
           GH_TOKEN: ${{ github.token }}
       - name: Summarize job
         run: echo GitHub release created at https://github.com/${{ github.repository }}/releases/tag/${{ github.ref_name }}. >> $GITHUB_STEP_SUMMARY
+
+  create-bump-pull-request:
+    needs:
+      - publish-package
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Configure user profile
+        run: |
+          git config user.email "${{ format('@{0}', github.actor) }}"
+          git config user.name "${{ format('@{0}', github.actor) }}"
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+      - id: bump-version
+        run: |
+          npm version prepatch --no-git-tag-version
+          echo version=`cat package.json | jq -r .version` >> $GITHUB_OUTPUT
+      - name: Create branch
+        run: |
+          git checkout -b bump-${{ steps.bump-version.outputs.version }}
+          git add --all
+          git commit --message "Bump to ${{ steps.bump-version.outputs.version }}"
+          git push --set-upstream origin bump-${{ steps.bump-version.outputs.version }}
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        id: create-pull-request
+        name: Create pull request
+        run: echo url=`gh pr create --assignee ${{ github.actor }} --base main --body "" --title "Bump to ${{ steps.bump-version.outputs.version }}" || true` >> $GITHUB_OUTPUT
+      - name: Summarize job
+        run: |
+          if [ "${{ steps.create-pull-request.outputs.url }}" = "" ]; then
+            echo "Branch created at [bump-${{ steps.bump-version.outputs.version }}](https://github.com/${{ github.repository }}/compare/main...bump-${{ steps.bump-version.outputs.version }})" >> $GITHUB_STEP_SUMMARY
+          else
+            echo Pull request created at ${{ steps.create-pull-request.outputs.url }}. >> $GITHUB_STEP_SUMMARY
+          fi
