@@ -7,8 +7,6 @@ on:
 jobs:
   build-and-draft:
     runs-on: ubuntu-latest
-    outputs:
-      tag: ${{ steps.get-version.outputs.tag }}
 
     steps:
       - uses: actions/checkout@v3
@@ -17,20 +15,13 @@ jobs:
         with:
           node-version: 16
           cache: 'npm'
-      - id: get-version
-        name: Get version
-        run: |
-          echo tag=`echo ${{ github.ref }} | awk '{ sub(/^refs\/tags\//, ""); print; }'` > $GITHUB_OUTPUT
-          echo version=`cat package.json | jq -r '.version'` >> $GITHUB_OUTPUT
-      - name: Check version number
-        if: ${{ contains(steps.get-version.outputs.version, '-') }}
-        run: |
-          echo Version number must not be a prerelease.
-          exit 1
+      - id: read-package-json
+        name: Read package.json
+        run: echo version=`cat package.json | jq -r '.version'` >> $GITHUB_OUTPUT
       - name: Propagate versions
         run: |
           cd packages/use-ref-from
-          npm version --no-git-tag-version ${{ steps.get-version.outputs.version }}
+          npm version --no-git-tag-version ${{ steps.read-package-json.outputs.version }}
       - run: npm clean-install
       - run: npm run build --if-present
       - name: Run npm pack
@@ -43,7 +34,7 @@ jobs:
           name: tarball
           path: packages/use-ref-from/*.tgz
       - name: Draft a new release
-        run: gh release create ${{ steps.get-version.outputs.tag }} ./packages/use-ref-from/*.tgz --draft --notes-file ./CHANGELOG.md
+        run: gh release create ${{ github.ref_name }} ./packages/use-ref-from/*.tgz --draft --notes-file ./CHANGELOG.md
         env:
           GH_TOKEN: ${{ github.token }}
 
@@ -61,9 +52,23 @@ jobs:
         uses: actions/download-artifact@v3.0.1
         with:
           name: tarball
+      - id: read-package-json
+        name: Read package.json
+        run: |
+          echo package-name=`tar --extract --file=\`ls ./*.tgz\` --to-stdout package/package.json | jq -r .name` >> $GITHUB_OUTPUT
+          echo version=`tar --extract --file=\`ls ./*.tgz\` --to-stdout package/package.json | jq -r .version` >> $GITHUB_OUTPUT
+      - name: Print version
+        run: echo ${{ steps.read-package-json.outputs.version }}
+      - if: ${{ contains(steps.read-package-json.outputs.version, '-') }}
+        name: Check version number
+        run: |
+          echo ::error::Cannot publish prerelease version
+          exit 1
       - run: npm publish `ls ./*.tgz`
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Generate job summary
+        run: NPM package published to https://npmjs.com/package/${{ steps.read-package-json.outputs.package-name }}/v/${{ steps.read-package-json.outputs.version }}.
 
   publish-release:
     needs:
@@ -73,6 +78,8 @@ jobs:
 
     steps:
       - name: Publish release
-        run: gh release edit ${{ needs.build-and-draft.outputs.tag }} --draft=false --repo ${{ github.repository }}
+        run: gh release edit ${{ github.ref_name }} --draft=false --repo ${{ github.repository }}
         env:
           GH_TOKEN: ${{ github.token }}
+      - name: Generate job summary
+        run: GitHub release created at https://github.com/${{ github.repository }}/releases/tag/${{ github.ref_name }}.
