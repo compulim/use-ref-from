@@ -40,7 +40,7 @@ jobs:
           name: tarball
           path: packages/use-ref-from/*.tgz
 
-  publish:
+  publish-package:
     needs: build
     runs-on: ubuntu-latest
     environment: prerelease
