@@ -5,9 +5,10 @@ on:
     tags: 'v*'
 
 jobs:
-  build-and-draft:
+  build:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js 16
@@ -40,9 +41,8 @@ jobs:
 
   publish-package:
     environment: production
-    needs: build-and-draft
+    needs: build
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/setup-node@v3
         with:
@@ -70,10 +70,11 @@ jobs:
 
   publish-release:
     needs:
-      - build-and-draft
+      - build
       - publish-package
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
-
     steps:
       - name: Publish release
         run: gh release edit ${{ github.ref_name }} --draft=false --repo ${{ github.repository }}
