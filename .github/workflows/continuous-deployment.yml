@@ -59,15 +59,13 @@ jobs:
         run: |
           echo package-name=`tar --extract --file=\`ls ./*.tgz\` --to-stdout package/package.json | jq -r .name` >> $GITHUB_OUTPUT
           echo version=`tar --extract --file=\`ls ./*.tgz\` --to-stdout package/package.json | jq -r .version` >> $GITHUB_OUTPUT
-      - name: Print version
-        run: echo ${{ steps.read-package-json.outputs.version }}
       - if: ${{ !contains(steps.read-package-json.outputs.version, '-') }}
         name: Check version number
         run: |
-          echo ::error::Cannot publish production version
+          echo ::error::Cannot publish production version ${{ steps.read-package-json.outputs.version }}
           exit 1
       - run: npm publish --tag ${{ github.ref_name }} `ls *.tgz`
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Generate job summary
-        run: echo NPM package published to https://npmjs.com/package/${{ steps.read-package-json.outputs.package-name }}/v/${{ steps.read-package-json.outputs.version }}.
+      - name: Summarize job
+        run: echo NPM package published to https://npmjs.com/package/${{ steps.read-package-json.outputs.package-name }}/v/${{ steps.read-package-json.outputs.version }}. >> $GITHUB_STEP_SUMMARY

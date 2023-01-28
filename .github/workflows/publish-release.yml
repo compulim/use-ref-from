@@ -57,18 +57,16 @@ jobs:
         run: |
           echo package-name=`tar --extract --file=\`ls ./*.tgz\` --to-stdout package/package.json | jq -r .name` >> $GITHUB_OUTPUT
           echo version=`tar --extract --file=\`ls ./*.tgz\` --to-stdout package/package.json | jq -r .version` >> $GITHUB_OUTPUT
-      - name: Print version
-        run: echo ${{ steps.read-package-json.outputs.version }}
       - if: ${{ contains(steps.read-package-json.outputs.version, '-') }}
         name: Check version number
         run: |
-          echo ::error::Cannot publish prerelease version
+          echo ::error::Cannot publish prerelease version ${{ steps.read-package-json.outputs.version }}
           exit 1
       - run: npm publish `ls ./*.tgz`
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Generate job summary
-        run: NPM package published to https://npmjs.com/package/${{ steps.read-package-json.outputs.package-name }}/v/${{ steps.read-package-json.outputs.version }}.
+      - name: Summarize job
+        run: NPM package published to https://npmjs.com/package/${{ steps.read-package-json.outputs.package-name }}/v/${{ steps.read-package-json.outputs.version }}. >> $GITHUB_STEP_SUMMARY
 
   publish-release:
     needs:
@@ -81,5 +79,5 @@ jobs:
         run: gh release edit ${{ github.ref_name }} --draft=false --repo ${{ github.repository }}
         env:
           GH_TOKEN: ${{ github.token }}
-      - name: Generate job summary
-        run: GitHub release created at https://github.com/${{ github.repository }}/releases/tag/${{ github.ref_name }}.
+      - name: Summarize job
+        run: GitHub release created at https://github.com/${{ github.repository }}/releases/tag/${{ github.ref_name }}. >> $GITHUB_STEP_SUMMARY
