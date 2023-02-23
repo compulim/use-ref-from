@@ -74,11 +74,11 @@ test('using ref in callback should return the most recent value', () => {
 test('should not be settable', () => {
   // WHEN: Calling setter from the return value of useRefFrom().
   // THEN: It should throw a getter-only exception.
-  expect(() => {
-    const {
-      result: { current }
-    } = renderHook(() => {
-      useRefFrom(123).current = 234;
-    });
-  }).toThrow('Cannot set property current of #<Object> which has only a getter');
+  expect(
+    () =>
+      // Exception thrown when `result.current` getter is called.
+      renderHook(() => {
+        useRefFrom(123).current = 234;
+      }).result.current
+  ).toThrow('Cannot set property current of #<Object> which has only a getter');
 });
