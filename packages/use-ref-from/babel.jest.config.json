@@ -1,3 +1,22 @@
 {
-  "extends": "./babel.commonjs.config.json"
+  "plugins": [
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "corejs": 3,
+        "version": "7.21.0"
+      }
+    ]
+  ],
+  "presets": [
+    "@babel/preset-typescript",
+    [
+      "@babel/preset-env",
+      {
+        "modules": "commonjs",
+        "targets": { "node": "16" }
+      }
+    ]
+  ],
+  "sourceMaps": true
 }

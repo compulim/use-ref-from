@@ -3,6 +3,9 @@ name: Continuous deployment
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - '.devcontainer/**'
+      - '.github/**'
 
 jobs:
   build:
@@ -11,6 +14,7 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x]
+        package-name: [use-ref-from]
 
     steps:
       - uses: actions/checkout@v3
@@ -26,19 +30,28 @@ jobs:
           echo version=`cat package.json | jq -r '.version'` >> $GITHUB_OUTPUT
       - name: Propagate versions
         run: |
-          cd packages/use-ref-from
+          cd packages/${{ matrix.package-name }}
           npm version --no-git-tag-version ${{ steps.set-version.outputs.version }}
       - run: npm clean-install
       - run: npm run build --if-present
       - name: Run npm pack
         run: |
-          cd packages/use-ref-from
+          cd packages/${{ matrix.package-name }}
           npm pack
       - name: Upload tarball artifact
         uses: actions/upload-artifact@v3.1.1
         with:
           name: tarball
-          path: packages/use-ref-from/*.tgz
+          path: packages/${{ matrix.package-name }}/*.tgz
+      - name: Build pages
+        run: |
+          cd packages/pages
+          npm install ../${{ matrix.package-name }}/*.tgz
+          npm run build
+      - name: Upload pages artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: packages/pages/public
 
   publish-package:
     needs: build
@@ -69,3 +82,18 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Summarize job
         run: echo NPM package published to https://npmjs.com/package/${{ steps.read-package-json.outputs.package-name }}/v/${{ steps.read-package-json.outputs.version }}. >> $GITHUB_STEP_SUMMARY
+
+  publish-pages:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+
+    steps:
+      - id: deployment
+        name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2
