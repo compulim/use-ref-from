@@ -8,11 +8,13 @@
   "exports": {
     ".": {
       "import": "./lib/esmodules/index.js",
-      "require": "./lib/commonjs/index.js"
+      "require": "./lib/commonjs/index.js",
+      "types": "./lib/types/index.d.ts"
     },
     "./useRefFrom": {
       "import": "./lib/esmodules/useRefFrom.js",
-      "require": "./lib/commonjs/useRefFrom.js"
+      "require": "./lib/commonjs/useRefFrom.js",
+      "types": "./lib/types/useRefFrom.d.ts"
     }
   },
   "main": "./lib/commonjs/index.js",
