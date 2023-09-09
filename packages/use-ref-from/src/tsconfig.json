@@ -4,6 +4,8 @@
     "jsx": "react",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
+    "noEmit": true,
     "strict": true
-  }
+  },
+  "extends": "@tsconfig/strictest/tsconfig.json"
 }
