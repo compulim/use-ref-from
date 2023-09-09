@@ -7,5 +7,6 @@
     "noEmit": true,
     "strict": true,
     "target": "ESNext"
-  }
+  },
+  "extends": "@tsconfig/strictest/tsconfig.json"
 }

@@ -8,5 +8,5 @@
     "strict": true
   },
   "extends": "@tsconfig/recommended/tsconfig.json",
-  "include": ["**/*.spec.ts", "**/*.test.ts", "__test__/**/*"]
+  "include": ["**/*.spec.ts", "**/*.spec.tsx", "**/*.test.ts", "**/*.test.tsx", "__tests__/**/*"]
 }
