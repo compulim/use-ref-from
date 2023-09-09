@@ -2,7 +2,7 @@
   "compilerOptions": {
     "declaration": true,
     "emitDeclarationOnly": true,
-    "moduleResolution": "NodeNext"
   },
+  "exclude": ["**/*.spec.*", "**/*.test.*", "__test__/**/*"],
   "extends": "./tsconfig.json"
 }

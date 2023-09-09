@@ -2,7 +2,8 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "jsx": "react",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "strict": true
-  },
-  "exclude": ["**/*.spec.*", "**/*.test.*"]
+  }
 }
