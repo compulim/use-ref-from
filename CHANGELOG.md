@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Updates `tsconfig.json` to extend from [`@tsconfig/strictest`](https://npmjs.com/package/@tsconfig/strictest), by [@compulim](https://github.com/compulim), in PR [#21](https://github.com/compulim/use-ref-from/pull/21)
+   - Development dependencies
+      - [`@types/react@18.2.21`](https://npmjs.com/package/@types/react)
+      - [`@types/react-dom@18.2.7`](https://npmjs.com/package/@types/react-dom)
+      - [`esbuild@0.19.2`](https://npmjs.com/package/esbuild)
+      - [`typescript@5.2.2`](https://npmjs.com/package/typescript)
+
 ### Fixed
 
 - Fixes [#19](https://github.com/compulim/use-ref-from/issues/19). Updated `exports` field to workaround [TypeScript resolution bug](https://github.com/microsoft/TypeScript/issues/50762), by [@compulim](https://github.com/compulim), in PR [#20](https://github.com/compulim/use-ref-from/pull/20)
