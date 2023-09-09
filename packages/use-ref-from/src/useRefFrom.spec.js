@@ -76,8 +76,9 @@ test('should not be settable', () => {
   // THEN: It should throw a getter-only exception.
   expect(
     () =>
-      // Exception thrown when `result.current` getter is called.
+      // Exception thrown when `result.current` setter is called.
       renderHook(() => {
+        // @ts-expect-error Intentionally setting the value to throw exception.
         useRefFrom(123).current = 234;
       }).result.current
   ).toThrow('Cannot set property current of #<Object> which has only a getter');
