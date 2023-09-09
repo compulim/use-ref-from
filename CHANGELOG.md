@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixes [#19](https://github.com/compulim/use-ref-from/issues/19). Updated `exports` field to workaround [TypeScript resolution bug](https://github.com/microsoft/TypeScript/issues/50762), by [@compulim](https://github.com/compulim), in PR [#20](https://github.com/compulim/use-ref-from/pull/20)
+
 ## [0.0.2] - 2023-03-21
 
 ### Fixed
