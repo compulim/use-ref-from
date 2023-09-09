@@ -18,6 +18,7 @@
   "author": "William Wong (https://github.com/compulim)",
   "license": "MIT",
   "devDependencies": {
+    "@tsconfig/strictest": "^2.0.2",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "esbuild": "^0.19.2",
