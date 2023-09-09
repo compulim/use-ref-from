@@ -7,5 +7,6 @@
     "noEmit": true,
     "strict": true
   },
-  "extends": "@tsconfig/strictest/tsconfig.json"
+  "extends": "@tsconfig/recommended/tsconfig.json",
+  "include": ["**/*.spec.ts", "**/*.test.ts", "__test__/**/*"]
 }

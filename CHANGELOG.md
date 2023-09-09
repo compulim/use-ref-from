@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Added type-checking for test, by [@compulim](https://github.com/compulim), in PR [#XX](https://github.com/compulim/use-ref-from/pull/XX)
 - Updates `tsconfig.json` to extend from [`@tsconfig/strictest`](https://npmjs.com/package/@tsconfig/strictest), by [@compulim](https://github.com/compulim), in PR [#21](https://github.com/compulim/use-ref-from/pull/21)
    - Development dependencies
       - [`@types/react@18.2.21`](https://npmjs.com/package/@types/react)
