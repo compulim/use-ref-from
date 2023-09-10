@@ -8,15 +8,15 @@ extends:
 overrides:
   - extends: .eslintrc.jest.yml
     files:
-      - '__tests__/**'
-      - '*.spec.js'
-      - '*.spec.jsx'
-      - '*.spec.ts'
-      - '*.spec.tsx'
-      - '*.test.js'
-      - '*.test.jsx'
-      - '*.test.ts'
-      - '*.test.tsx'
+    - '__tests__/**'
+    - '*.spec.js'
+    - '*.spec.jsx'
+    - '*.spec.ts'
+    - '*.spec.tsx'
+    - '*.test.js'
+    - '*.test.jsx'
+    - '*.test.ts'
+    - '*.test.tsx'
 parser: '@typescript-eslint/parser'
 parserOptions:
   ecmaVersion: latest
@@ -31,6 +31,13 @@ rules:
   no-empty:
     - error
     - allowEmptyCatch: true
+  '@typescript-eslint/no-unused-vars':
+    - error
+    - argsIgnorePattern: ^_
+      caughtErrorsIgnorePattern: ^_
+      destructuredArrayIgnorePattern: ^_
+      varsIgnorePattern: ^_
+
 settings:
   react:
-    version: '17.0.2'
+    version: '16.8'
