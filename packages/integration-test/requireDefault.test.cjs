@@ -1,6 +1,6 @@
 /** @jest-environment jsdom */
 
-const { renderHook } = require('@testing-library/react-hooks');
+const { renderHook } = require('@testing-library/react');
 const { useRefFrom } = require('use-ref-from');
 
 test('simple scenario', () => {

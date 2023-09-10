@@ -5,6 +5,11 @@
   "private": true,
   "author": "William Wong (https://github.com/compulim)",
   "license": "MIT",
+  "workspaces": [
+    "packages/use-ref-from",
+    "packages/pages",
+    "packages/integration-test"
+  ],
   "scripts": {
     "build": "npm run build --if-present --workspaces",
     "bump": "npm run bump:prod && npm run bump:dev && npm run bump:auditfix && npm run bump:packages && npm run bump:eslintrc",

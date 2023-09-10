@@ -15,6 +15,9 @@
   },
   "author": "William Wong (https://github.com/compulim)",
   "license": "MIT",
+  "localPeerDependencies": {
+    "use-ref-from": "file:../use-ref-from/use-ref-from-0.0.0-0.tgz"
+  },
   "devDependencies": {
     "@tsconfig/strictest": "^2.0.2",
     "@types/react": "^18.2.21",
@@ -23,11 +26,8 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "use-ref-from": "file:../use-ref-from/use-ref-from-0.0.0-0.tgz"
-  },
-  "localPeerDependencies": {
-    "use-ref-from": "file:../use-ref-from/use-ref-from-0.0.0-0.tgz"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "use-ref-from": "^0.0.0-0"
   }
 }
