@@ -1,5 +1,5 @@
 {
-  "testPathIgnorePatterns": ["/lib/", "/node_modules/", "/__types__/", "\\.pnp\\.[^\\/]+$"],
+  "testPathIgnorePatterns": ["/__tests__/__setup__/", "/lib/", "/node_modules/", "/__types__/", "\\.pnp\\.[^\\/]+$"],
   "transform": {
     "\\.[jt]sx?$": [
       "babel-jest",
