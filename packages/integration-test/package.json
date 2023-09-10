@@ -10,8 +10,8 @@
     "bump:prod": "if [ `cat package.json | jq -r '(.dependencies // {}) | length'` -ne 0 ]; then npm install --save-exact $(cat package.json | jq -r '(.pinDependencies // {}) as $p | ((.dependencies // {}) | keys) | map(. + \"@\" + ($p[.] // [\"latest\"])[0]) | .[]'); fi",
     "postbump": "cat package.json | jq '. + (.dependencies = (((.dependencies // {}) + (.localPeerDependencies // {})) | to_entries | sort_by(.key) | from_entries)) | (.devDependencies = (((.devDependencies // {}) + (.localPeerDevDependencies // {})) | to_entries | sort_by(.key) | from_entries))' > package-temp.json && mv package-temp.json package.json",
     "prebump": "cat package.json | jq '(((.localPeerDependencies // {}) | keys | map([\"dependencies\", .])) + ((.localPeerDevDependencies // {}) | keys | map([\"devDependencies\", .]))) as $localPeerPaths | delpaths($localPeerPaths)' > package-temp.json && mv package-temp.json package.json",
-    "precommit": "eslint ./",
-    "prepare": "npm install ../use-ref-from/use-ref-from-0.0.0-0.tgz",
+    "precommit": "eslint --ext .js,.cjs,.mjs ./",
+    "prepare": "npm install ../react-chain-of-responsibility/react-chain-of-responsibility-0.0.0-0.tgz",
     "test": "jest"
   },
   "author": "William Wong (https://github.com/compulim)",

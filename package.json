@@ -17,7 +17,7 @@
     "bump:packages:pages": "cd packages/pages && npm run bump",
     "bump:prod": "if [ `cat package.json | jq -r '(.dependencies // {}) | length'` -ne 0 ]; then npm install --save-exact $(cat package.json | jq -r '(.pinDependencies // {}) as $p | ((.dependencies // {}) | keys) | map(. + \"@\" + ($p[.] // [\"latest\"])[0]) | .[]'); fi",
     "postscaffold": "npm run postscaffold:eslint:react && npm run postscaffold:package",
-    "postscaffold:eslint:react": "if [ -f packages/use-ref-from/node_modules/react/package.json ]; then docker run -e VERSION=$(cat packages/use-ref-from/node_modules/react/package.json | jq -r '.version') -i --rm mikefarah/yq '.settings.react.version = strenv(VERSION)' < ./.eslintrc.yml | tee /tmp/output.tmp && mv /tmp/output.tmp ./.eslintrc.yml; fi",
+    "postscaffold:eslint:react": "if [ -f packages/use-ref-from/node_modules/react/package.json ]; then docker run -e VERSION=$(cat packages/use-ref-from/node_modules/react/package.json | jq -r '.version') -i --rm mikefarah/yq '.settings.react.version = strenv(VERSION)' < ./.eslintrc.react.yml | tee /tmp/output.tmp && mv /tmp/output.tmp ./.eslintrc.react.yml; fi",
     "postscaffold:package": "cd packages/use-ref-from && npm run postscaffold",
     "precommit": "npm run precommit:main && npm run precommit:pages && npm run precommit:integration",
     "precommit:integration": "cd packages/integration-test && npm run precommit || true",
