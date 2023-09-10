@@ -14,7 +14,7 @@
   "author": "William Wong (https://github.com/compulim)",
   "license": "MIT",
   "localPeerDependencies": {
-    "use-ref-from": "file:../use-ref-from/use-ref-from-0.0.0-0.tgz"
+    "use-ref-from": "^0.0.0-0"
   },
   "devDependencies": {
     "@babel/core": "^7.22.17",

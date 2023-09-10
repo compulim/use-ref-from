@@ -1,3 +1,5 @@
+/** @jest-environment jsdom */
+
 import { renderHook } from '@testing-library/react';
 import { useCallback } from 'react';
 import useRefFrom from './useRefFrom';
