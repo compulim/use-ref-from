@@ -1,5 +1,5 @@
+import { Fragment } from 'react';
 import { useRefFrom } from 'use-ref-from';
-import React, { Fragment } from 'react';
 
 const App = () => {
   const value = useRefFrom('Hello, World!');

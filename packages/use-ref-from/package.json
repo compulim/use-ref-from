@@ -8,27 +8,27 @@
   "exports": {
     ".": {
       "import": {
-        "types": "./lib/esmodules-types/index.d.ts",
+        "types": "./lib/esmodules/index.d.ts",
         "default": "./lib/esmodules/index.js"
       },
       "require": {
-        "types": "./lib/commonjs-types/index.d.ts",
+        "types": "./lib/commonjs/index.d.ts",
         "default": "./lib/commonjs/index.js"
       }
     },
     "./useRefFrom": {
       "import": {
-        "types": "./lib/esmodules-types/useRefFrom.d.ts",
+        "types": "./lib/esmodules/useRefFrom.d.ts",
         "default": "./lib/esmodules/useRefFrom.js"
       },
       "require": {
-        "types": "./lib/commonjs-types/useRefFrom.d.ts",
+        "types": "./lib/commonjs/useRefFrom.d.ts",
         "default": "./lib/commonjs/useRefFrom.js"
       }
     }
   },
   "main": "./lib/commonjs/index.js",
-  "typings": "./lib/commonjs-types/index.d.ts",
+  "typings": "./lib/commonjs/index.d.ts",
   "scripts": {
     "build": "npm run build:babel:commonjs && npm run build:babel:esmodules && npm run build:typescript:commonjs && npm run build:typescript:esmodules",
     "build:babel:commonjs": "babel src --config-file ./babel.commonjs.config.json --extensions .ts,.tsx --out-dir ./lib/commonjs/",
@@ -48,7 +48,6 @@
     "precommit:typescript:production": "tsc --noEmit --project ./src/tsconfig.precommit.production.json",
     "precommit:typescript:test": "tsc --noEmit --project ./src/tsconfig.precommit.test.json",
     "prepack": "cp ../../CHANGELOG.md . && cp ../../LICENSE . && cp ../../README.md .",
-    "start": "esbuild --bundle --outfile=./public/main.js --servedir=./public --sourcemap ./scenarios/index.jsx",
     "test": "jest"
   },
   "repository": {
