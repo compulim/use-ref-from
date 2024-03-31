@@ -35,6 +35,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
       - [`jest@29.7.0`](https://npmjs.com/package/jest)
       - [`prettier@3.2.5`](https://npmjs.com/package/prettier)
       - [`typescript@5.4.3`](https://npmjs.com/package/typescript)
+- Updated pull request validation to test against various React versions, in PR [#46](https://github.com/compulim/use-ref-from/pull/46)
+   - Moved from JSX Runtime to JSX Classic to support testing against React 16
 
 ## [0.0.3] - 2023-10-09
 

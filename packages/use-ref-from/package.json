@@ -81,6 +81,7 @@
     "@tsconfig/strictest": "^2.0.4",
     "@types/jest": "^29.5.12",
     "@types/react": "^18.2.70",
+    "escape-string-regexp": "^5.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "react": "^18.2.0",
