@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Relaxed peer dependencies requirements to `react@>=16.8.0`, by [@compulim](https://github.com/compulim) in PR [#XX](https://github.com/compulim/use-ref-from/pull/XX)
+- Relaxed peer dependencies requirements to `react@>=16.8.0`, by [@compulim](https://github.com/compulim) in PR [#47](https://github.com/compulim/use-ref-from/pull/47)
 - Bumped dependencies, by [@compulim](https://github.com/compulim), in PR [#43](https://github.com/compulim/use-ref-from/pull/43) and [#45](https://github.com/compulim/use-ref-from/pull/45)
    - Production dependencies
       - [`@babel/runtime-corejs3@7.24.1`](https://npmjs.com/package/@babel/runtime-corejs3)
