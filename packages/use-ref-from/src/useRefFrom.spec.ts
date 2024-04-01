@@ -1,10 +1,13 @@
 /** @jest-environment jsdom */
 
-import type { renderHook as RenderHookType } from '@testing-library/react';
 import { useCallback } from 'react';
 import useRefFrom from './useRefFrom';
 
-const renderHook: typeof RenderHookType =
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const renderHook: <T, P>(
+  render: (props: P) => T,
+  options?: { initialProps: P }
+) => { rerender: (props: P) => void; result: { current: T } } =
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   require('@testing-library/react').renderHook ||
   // eslint-disable-next-line @typescript-eslint/no-var-requires
