@@ -3,7 +3,6 @@
 import { useCallback } from 'react';
 import useRefFrom from './useRefFrom';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const renderHook: <T, P>(
   render: (props: P) => T,
   options?: { initialProps: P }
