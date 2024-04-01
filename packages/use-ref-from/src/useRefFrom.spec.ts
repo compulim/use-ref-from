@@ -1,8 +1,14 @@
 /** @jest-environment jsdom */
 
-import { renderHook } from '@testing-library/react';
+import type { renderHook as RenderHookType } from '@testing-library/react';
 import { useCallback } from 'react';
 import useRefFrom from './useRefFrom';
+
+const renderHook: typeof RenderHookType =
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  require('@testing-library/react').renderHook ||
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  require('@testing-library/react-hooks').renderHook;
 
 test('should get initial value', () => {
   // WHEN: Calling useRefFrom() with 123.
