@@ -9,9 +9,9 @@ jobs:
   call-workflow:
     strategy:
       matrix:
-        react-version: [current, 16, 17, 18]
+        switch: [current, react-16, react-17, react-18]
     uses: compulim/workflows/.github/workflows/pull-request-validation.yml@main
     with:
       package-name: use-ref-from
-      react-version: ${{ matrix.react-version }}
+      switch: ${{ matrix.switch }}
       skip-integration-test: false

@@ -66,7 +66,7 @@
     "url": "https://github.com/compulim/use-ref-from/issues"
   },
   "homepage": "https://github.com/compulim/use-ref-from#readme",
-  "switch:react:16": {
+  "switch:react-16": {
     "devDependencies": {
       "@testing-library/react": "^12",
       "@testing-library/react-hooks": "latest",
@@ -75,7 +75,7 @@
       "react-test-renderer": "16.8.0"
     }
   },
-  "switch:react:17": {
+  "switch:react-17": {
     "devDependencies": {
       "@testing-library/react": "^12",
       "@testing-library/react-hooks": "latest",
@@ -84,7 +84,7 @@
       "react-test-renderer": "17.0.0"
     }
   },
-  "switch:react:18": {
+  "switch:react-18": {
     "devDependencies": {
       "@types/react": "^18",
       "react": "18.0.0",
