@@ -31,9 +31,7 @@ body:
       multiple: true
       options:
         - 'ESM: import { useRefFrom } from "use-ref-from"'
-        - 'ESM: import useRefFrom from "use-ref-from/useRefFrom"'
         - 'CommonJS: require("use-ref-from")'
-        - 'CommonJS: require("use-ref-from/useRefFrom")'
         - Others or unrelated
     validations:
       required: true
