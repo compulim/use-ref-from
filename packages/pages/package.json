@@ -2,6 +2,7 @@
   "name": "use-ref-from-pages",
   "version": "0.0.0-0",
   "description": "",
+  "private": true,
   "scripts": {
     "build": "esbuild --bundle --entry-names=[name]/[ext]/main --jsx=automatic --minify --outdir=./public/static/ --sourcemap app=./src/app/index.tsx",
     "bump": "npm run bump:prod && npm run bump:dev && npm run bump:auditfix",
@@ -60,6 +61,5 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "use-ref-from": "^0.0.0-0"
-  },
-  "private": true
+  }
 }
