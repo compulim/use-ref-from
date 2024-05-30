@@ -13,5 +13,5 @@ jobs:
     uses: compulim/workflows/.github/workflows/pull-request-validation.yml@main
     with:
       package-name: use-ref-from
-      switch: ${{ matrix.switch }}
       skip-integration-test: false
+      switch: ${{ matrix.switch }}
