@@ -77,10 +77,11 @@
     "react": ">=16.8.0"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.24.6",
-    "@babel/preset-react": "^7.24.6",
-    "@babel/preset-typescript": "^7.24.6",
-    "@testing-library/react": "^15.0.7",
+    "@babel/preset-env": "^7.24.7",
+    "@babel/preset-react": "^7.24.7",
+    "@babel/preset-typescript": "^7.24.7",
+    "@testing-library/dom": "^10.2.0",
+    "@testing-library/react": "^16.0.0",
     "@tsconfig/recommended": "^1.0.6",
     "@tsconfig/strictest": "^2.0.5",
     "@types/jest": "^29.5.12",
@@ -90,7 +91,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "react": "^18.3.1",
     "react-test-renderer": "^18.3.1",
-    "tsup": "^8.0.2",
-    "typescript": "^5.4.5"
+    "tsup": "^8.1.0",
+    "typescript": "^5.5.2"
   }
 }
