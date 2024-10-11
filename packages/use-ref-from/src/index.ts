@@ -1,3 +1,3 @@
-import useRefFrom from './useRefFrom';
+import useRefFrom from './useRefFrom.ts';
 
 export { useRefFrom };

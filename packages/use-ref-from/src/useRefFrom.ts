@@ -1,5 +1,4 @@
-import { useMemo, useRef } from 'react';
-import type { RefObject } from 'react';
+import { useMemo, useRef, type RefObject } from 'react';
 
 export default function useRefFrom<T>(value: T): RefObject<T> & { get current(): T } {
   const ref = useRef<T>();
