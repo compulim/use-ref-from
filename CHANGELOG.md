@@ -7,14 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Breaking changes
+### Removed
 
-- Removed named exports, please import the defaults instead
+- 💢 Removed named exports, please import the defaults instead
    - Use `import { useRefFrom } from 'use-ref-from'` instead
-- Moved build tools from Babel to tsup/esbuild
 
 ### Changed
 
+- 💢 Moved build tools from Babel to tsup/esbuild
 - Bumped dependencies, in PR [#55](https://github.com/compulim/use-ref-from/pull/55), and [#59](https://github.com/compulim/use-ref-from/pull/59)
    - Development dependencies
       - [`@babel/core@7.24.6`](https://npmjs.com/package/@babel/core/v/7.24.6)
