@@ -22,8 +22,8 @@ on:
 jobs:
   call-workflow:
     secrets:
-      APP_ID: ${{ secrets.WORKFLOW_BOT_APP_ID }}
-      PRIVATE_KEY: ${{ secrets.WORKFLOW_BOT_PRIVATE_KEY }}
+      WORKFLOW_BOT_APP_ID: ${{ secrets.WORKFLOW_BOT_APP_ID }}
+      WORKFLOW_BOT_PRIVATE_KEY: ${{ secrets.WORKFLOW_BOT_PRIVATE_KEY }}
     uses: compulim/workflows/.github/workflows/bump-scaffold.yml@main
     with:
       package-name: ${{ inputs.package-name }}
