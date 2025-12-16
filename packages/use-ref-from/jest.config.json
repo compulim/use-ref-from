@@ -23,7 +23,7 @@
             {
               "modules": "commonjs",
               "targets": {
-                "node": "18"
+                "node": "20"
               }
             }
           ]
