@@ -48,7 +48,7 @@
     }
   },
   "localPeerDependencies": {
-    "use-ref-from": "^0.0.0-0"
+    "use-ref-from": "0.0.0-0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.25.8",
