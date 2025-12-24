@@ -1,5 +1,5 @@
 {
-  "name": "use-ref-from-pages",
+  "name": "@compulim/use-ref-from-pages",
   "version": "0.0.0-0",
   "description": "",
   "private": true,
@@ -60,6 +60,6 @@
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "use-ref-from": "^0.0.0-0"
+    "use-ref-from": "0.0.0-0"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "use-ref-from-integration-test",
+  "name": "@compulim/use-ref-from-integration-test",
   "version": "0.0.0-0",
   "description": "",
   "private": true,
@@ -67,6 +67,6 @@
     "typescript": "^5.6.3"
   },
   "dependencies": {
-    "use-ref-from": "^0.0.0-0"
+    "use-ref-from": "0.0.0-0"
   }
 }
