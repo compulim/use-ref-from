@@ -1,5 +1,7 @@
 /** @jest-environment jsdom */
 
+/// <reference types="jest" />
+
 import { useCallback } from 'react';
 import useRefFrom from './useRefFrom';
 

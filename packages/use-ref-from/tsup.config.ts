@@ -4,7 +4,7 @@ export default defineConfig([
   {
     dts: true,
     entry: {
-      ['use-ref-from'.split('/').at(-1) as string]: './src/index.ts'
+      'use-ref-from': './src/index.ts'
     },
     format: ['cjs', 'esm'],
     sourcemap: true,
