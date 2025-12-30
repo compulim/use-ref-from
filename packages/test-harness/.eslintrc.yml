@@ -1,5 +1,8 @@
 extends:
   - ./.eslintrc.custom.yml
+ignorePatterns:
+  - '**/*.d.mts'
+  - '**/*.d.ts'
 overrides:
   - env:
       commonjs: true
