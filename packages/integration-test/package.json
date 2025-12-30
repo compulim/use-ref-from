@@ -3,6 +3,12 @@
   "version": "0.0.0-0",
   "description": "",
   "private": true,
+  "files": [
+    "**/*.cjs",
+    "**/*.js",
+    "**/*.mjs",
+    "webDriver/**/*"
+  ],
   "scripts": {
     "build": "npm run build:copy && npm run build:custom --if-present",
     "build:copy": "mkdir -p ./webDriver/static/; SRC=$(node --eval=\"console.log(require('path').resolve(require('resolve-cwd')('use-ref-from'), '../../dist'))\"); DEST=$(realpath ./webDriver/static); rm -rf $DEST; mkdir -p $DEST/js/; cp $SRC/** $DEST/js/",
@@ -56,15 +62,11 @@
       "18"
     ]
   },
-  "bundledDependencies": [
-    "@compulim/test-harness"
-  ],
   "localPeerDependencies": {
     "@compulim/test-harness": "0.0.0-0",
     "use-ref-from": "0.0.0-0"
   },
   "devDependencies": {
-    "@compulim/test-harness": "0.0.0-0",
     "@testduet/wait-for": "^0.1.0",
     "@tsconfig/strictest": "^2.0.5",
     "@types/react": "^18.3.11",
@@ -75,6 +77,7 @@
     "typescript": "^5.6.3"
   },
   "dependencies": {
+    "@compulim/test-harness": "0.0.0-0",
     "use-ref-from": "0.0.0-0"
   }
 }
