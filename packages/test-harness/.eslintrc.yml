@@ -1,18 +1,23 @@
 extends:
   - ./.eslintrc.custom.yml
 ignorePatterns:
-  - webDriver/**/dist/**
-  - webDriver/static/**
+  - '**/*.d.mts'
+  - '**/*.d.ts'
 overrides:
   - env:
       commonjs: true
     files:
-      - '**/*.cjs'
       - '**/*.js'
+      - '**/*.ts'
+    parserOptions:
+      ecmaVersion: latest
     rules:
       import/no-commonjs: off
   - files:
       - '**/*.mjs'
+      - '**/*.mts'
     parserOptions:
       ecmaVersion: latest
       sourceType: module
+rules:
+  import/no-mutable-exports: off

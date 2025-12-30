@@ -1,21 +1,11 @@
-/** @jest-environment jsdom */
-
-/// <reference types="jest" />
-
+import { renderHook } from '@compulim/test-harness/renderHook';
+import { expect } from 'expect';
+import { mock, test, type Mock } from 'node:test';
 import React from 'react';
-import useRefFrom from './useRefFrom';
+import useRefFrom from './useRefFrom.ts';
 
 // Need to destructure instead of import for React < 16.14.0.
 const { useCallback } = React;
-
-const renderHook: <T, P>(
-  render: (props: P) => T,
-  options?: { initialProps: P }
-) => { rerender: (props: P) => void; result: { current: T } } =
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('@testing-library/react').renderHook ||
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('@testing-library/react-hooks').renderHook;
 
 test('should get initial value', () => {
   // WHEN: Calling useRefFrom() with 123.
@@ -60,7 +50,7 @@ test('using ref in callback should return the most recent value', () => {
       const ref = useRefFrom(input);
 
       return useCallback(
-        jest.fn(() => ref.current),
+        mock.fn(() => ref.current),
         [ref]
       );
     },
@@ -83,7 +73,7 @@ test('using ref in callback should return the most recent value', () => {
   expect(result.current).toBe(initialCallback);
 
   // THEN: Expect the callback function to be called twice.
-  expect(initialCallback).toHaveBeenCalledTimes(2);
+  expect((initialCallback satisfies Mock<() => number>).mock.callCount()).toBe(2);
 });
 
 test('should not be settable', () => {

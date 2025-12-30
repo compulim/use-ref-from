@@ -5,11 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+| Icon | Description                                                    |
+| ---- | -------------------------------------------------------------- |
+| 👷🏻   | Related to development experience and non-production impacting |
+
 ## [Unreleased]
 
 ### Changed
 
 - Import React using destructuring for Node.js test runner, by [@compulim](https://github.com/compulim) in PR [#75](https://github.com/compulim/use-ref-from/pull/75)
+- 👷🏻 Test framework moved from Jest to Node.js test runner, by [@compulim](https://github.com/compulim) in PR [#76](https://github.com/compulim/use-ref-from/pull/76)
 
 ## [0.2.0] - 2025-12-24
 
