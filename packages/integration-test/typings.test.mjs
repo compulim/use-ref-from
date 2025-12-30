@@ -6,12 +6,12 @@ import { createCompilerHost, createProgram, flattenDiagnosticMessageText, getPre
 let host;
 
 before(() => {
-  host = createCompilerHost({ noEmit: true, strict: true });
+  host = createCompilerHost({});
 });
 
 test('typings should work', () => {
   // GIVEN: TypeScript compiler to compile ./typings/simple.ts.
-  const program = createProgram({ host, options: {}, rootNames: ['./typings/simple.ts'] });
+  const program = createProgram({ host, options: { noEmit: true, strict: true }, rootNames: ['./typings/simple.ts'] });
 
   // WHEN: Compile.
   const { diagnostics } = program.emit();
@@ -25,7 +25,11 @@ test('typings should work', () => {
 
 test('setter should fail', () => {
   // GIVEN: TypeScript compiler to compile ./typings/setter.fail.ts.
-  const program = createProgram({ host, options: {}, rootNames: ['./typings/setter.fail.ts'] });
+  const program = createProgram({
+    host,
+    options: { noEmit: true, strict: true },
+    rootNames: ['./typings/setter.fail.ts']
+  });
 
   // WHEN: Compile.
   const { diagnostics } = program.emit();
