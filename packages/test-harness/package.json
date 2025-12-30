@@ -38,34 +38,40 @@
   "author": "William Wong (https://github.com/compulim)",
   "license": "MIT",
   "switch:react-16": {
-    "devDependencies": {
+    "dependencies": {
       "@testing-library/react": "^12",
       "@testing-library/react-hooks": "latest",
-      "@types/react": "^16",
-      "@types/react-dom": "^16",
       "react": "16.8.0",
       "react-dom": "16.8.0",
       "react-test-renderer": "16.8.0"
+    },
+    "devDependencies": {
+      "@types/react": "^16",
+      "@types/react-dom": "^16"
     }
   },
   "switch:react-17": {
-    "devDependencies": {
+    "dependencies": {
       "@testing-library/react": "^12",
       "@testing-library/react-hooks": "latest",
-      "@types/react": "^17",
-      "@types/react-dom": "^17",
       "react": "17.0.0",
       "react-dom": "17.0.0",
       "react-test-renderer": "17.0.0"
+    },
+    "devDependencies": {
+      "@types/react": "^17",
+      "@types/react-dom": "^17"
     }
   },
   "switch:react-18": {
-    "devDependencies": {
-      "@types/react": "^18",
-      "@types/react-dom": "^18",
+    "dependencies": {
       "react": "18.0.0",
       "react-dom": "18.0.0",
       "react-test-renderer": "18.0.0"
+    },
+    "devDependencies": {
+      "@types/react": "^18",
+      "@types/react-dom": "^18"
     }
   },
   "pinDependencies": {
@@ -85,19 +91,19 @@
       "18"
     ]
   },
-  "devDependencies": {
+  "dependencies": {
     "@happy-dom/global-registrator": "^20.0.11",
-    "@testduet/wait-for": "^0.1.0",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/react": "^16.0.1",
-    "@tsconfig/strictest": "^2.0.8",
-    "@types/react": "^18.3.11",
-    "@types/react-dom": "^18.3.2",
     "expect": "^30.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-test-renderer": "^18.3.1",
-    "resolve-cwd": "^3.0.0",
-    "typescript": "^5.6.3"
+    "react-test-renderer": "^18.3.1"
+  },
+  "devDependencies": {
+    "@tsconfig/strictest": "^2.0.8",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.2",
+    "resolve-cwd": "^3.0.0"
   }
 }
