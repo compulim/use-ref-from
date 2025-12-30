@@ -19,3 +19,5 @@ overrides:
     parserOptions:
       ecmaVersion: latest
       sourceType: module
+rules:
+  import/no-mutable-exports: off
