@@ -73,7 +73,7 @@ test('using ref in callback should return the most recent value', () => {
   expect(result.current).toBe(initialCallback);
 
   // THEN: Expect the callback function to be called twice.
-  expect((initialCallback satisfies Mock<any>).mock.callCount()).toBe(2);
+  expect((initialCallback satisfies Mock<() => number>).mock.callCount()).toBe(2);
 });
 
 test('should not be settable', () => {

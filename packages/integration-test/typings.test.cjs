@@ -1,6 +1,6 @@
 const { expect } = require('expect');
 const { test } = require('node:test');
-const { createProgram, flattenDiagnosticMessageText, getPreEmitDiagnostics, createCompilerHost } = require('typescript');
+const { createProgram, flattenDiagnosticMessageText, getPreEmitDiagnostics } = require('typescript');
 
 test('typings should work', () => {
   // GIVEN: TypeScript compiler to compile ./typings/simple.ts.
