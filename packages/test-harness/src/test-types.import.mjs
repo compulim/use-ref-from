@@ -3,7 +3,7 @@ import { registerHooks } from 'node:module';
 import { resolve } from 'node:path';
 import { fileURLToPath, URL } from 'node:url';
 
-const stub = (await readFile(resolve(fileURLToPath(import.meta.url), '../typing-test.stub.mts'))).toString();
+const stub = (await readFile(resolve(fileURLToPath(import.meta.url), '../test-types.stub.mts'))).toString();
 
 registerHooks({
   load(
@@ -17,7 +17,7 @@ registerHooks({
       const filename = resolve(fileURLToPath(url));
 
       // Could be loading /node_modules/.
-      if (filename.endsWith('.types.ts')) {
+      if (filename.endsWith('.test-types.ts')) {
         return {
           format: 'module-typescript',
           shortCircuit: true,

@@ -3,6 +3,9 @@
   "version": "0.0.0-0",
   "description": "",
   "private": true,
+  "files": [
+    "./src/**/*"
+  ],
   "exports": {
     "./act": {
       "import": {
@@ -25,15 +28,15 @@
         "types": "./src/renderHook.d.ts"
       }
     },
-    "./typing-test.import": "./src/typing-test.import.mjs"
+    "./test-types.import": "./src/test-types.import.mjs"
   },
   "scripts": {
     "bump": "npm run bump:prod && npm run bump:dev",
     "bump:dev": "PACKAGES_TO_BUMP=$(cat package.json | jq -r '(.pinDependencies // {}) as $P | (.localPeerDependencies // {}) as $L | (.devDependencies // {}) | to_entries | map(select(.key as $K | $L | has($K) | not)) | map(.key + \"@\" + ($P[.key] // [\"latest\"])[0]) | join(\" \")') && [ ! -z \"$PACKAGES_TO_BUMP\" ] && npm install $PACKAGES_TO_BUMP || true",
     "bump:prod": "PACKAGES_TO_BUMP=$(cat package.json | jq -r '(.pinDependencies // {}) as $P | (.localPeerDependencies // {}) as $L | (.dependencies // {}) | to_entries | map(select(.key as $K | $L | has($K) | not)) | map(.key + \"@\" + ($P[.key] // [\"latest\"])[0]) | join(\" \")') && [ ! -z \"$PACKAGES_TO_BUMP\" ] && npm install $PACKAGES_TO_BUMP || true",
     "init": "npm run init:dev --if-present && npm run init:prod --if-present",
-    "init:dev": "npm install --save-dev @happy-dom/global-registrator @testing-library/dom @testing-library/react expect",
-    "init:prod": "npm install --save @tsconfig/strictest @types/react@18 @types/react-dom@18 react@18 react-dom@18 react-test-renderer@18 resolve-cwd",
+    "init:dev": "npm install --save-dev @tsconfig/strictest @types/react@18 @types/react-dom@18 react@18 react-dom@18 react-test-renderer@18 resolve-cwd",
+    "init:prod": "npm install --save @happy-dom/global-registrator @testing-library/dom @testing-library/react escape-string-regexp expect typescript",
     "precommit": "npm run precommit:eslint && npm run precommit:typescript",
     "precommit:eslint": "ESLINT_USE_FLAT_CONFIG=false eslint --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts ./",
     "precommit:typescript": "tsc --noEmit --project ./src/tsconfig.precommit.json",

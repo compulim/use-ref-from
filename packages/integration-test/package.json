@@ -18,12 +18,14 @@
     "docker": "docker compose up --quiet-pull --scale chromium=4",
     "init": "npm run init:dev --if-present && npm run init:prod --if-present",
     "init:dev": "npm install --save-dev @tsconfig/strictest @types/react@18 @types/react-dom@18 expect resolve-cwd typescript",
-    "init:prod": "npm install --save @compulim/test-harness@0.0.0-0 react@18 react-dom@18 react-test-renderer@18 $package-name@0.0.0-0",
+    "init:prod": "npm install --save @compulim/test-harness@0.0.0-0 react@18 react-dom@18 react-test-renderer@18 use-ref-from@0.0.0-0",
     "posttest": "if test \"$CI\" = \"true\"; then docker compose logs; docker compose down; fi",
     "precommit": "ESLINT_USE_FLAT_CONFIG=false eslint --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts ./",
     "pretest": "if test \"$CI\" = \"true\"; then npm run build; npm run docker -- --detach --wait; fi",
     "switch": "cat package.json | jq --arg SWITCH_NAME $SWITCH_NAME -r '(.[\"switch:\" + $SWITCH_NAME] // {}) as $TEMPLATE | .devDependencies += ($TEMPLATE.devDependencies // {}) | .dependencies += ($TEMPLATE.dependencies // {})' | tee ./package.json.tmp && mv ./package.json.tmp ./package.json",
-    "test": "node --experimental-strip-types --import @compulim/test-harness/happy-dom.import --test"
+    "test": "npm run test:unit && npm run test:types",
+    "test:types": "node --experimental-strip-types --import @compulim/test-harness/test-types.import --test **/*.test-types.ts",
+    "test:unit": "node --experimental-strip-types --experimental-test-coverage --import @compulim/test-harness/happy-dom.import --test"
   },
   "author": "William Wong (https://github.com/compulim)",
   "license": "MIT",

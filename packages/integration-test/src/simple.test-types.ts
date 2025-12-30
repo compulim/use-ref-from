@@ -1,4 +1,4 @@
-import { useRefFrom } from '../index.ts';
+import { useRefFrom } from 'use-ref-from';
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
 const ref = useRefFrom<number>(123);
