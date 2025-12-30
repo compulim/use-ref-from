@@ -1,10 +1,17 @@
-const { expect } = require('expect');
-const { test } = require('node:test');
-const { createProgram, flattenDiagnosticMessageText, getPreEmitDiagnostics } = require('typescript');
+import { expect } from 'expect';
+import { before, test } from 'node:test';
+import { createCompilerHost, createProgram, flattenDiagnosticMessageText, getPreEmitDiagnostics } from 'typescript';
+
+/** @type {ReturnType<typeof createCompilerHost>} */
+let compiler;
+
+before(() => {
+  compiler = createCompilerHost({ noEmit: true, strict: true });
+});
 
 test('typings should work', () => {
   // GIVEN: TypeScript compiler to compile ./typings/simple.ts.
-  const program = createProgram(['./typings/simple.ts'], { noEmit: true, strict: true });
+  const program = createProgram({ compiler, rootNames: ['./typings/simple.ts'], options: {} });
 
   // WHEN: Compile.
   const { diagnostics } = program.emit();
@@ -18,7 +25,7 @@ test('typings should work', () => {
 
 test('setter should fail', () => {
   // GIVEN: TypeScript compiler to compile ./typings/setter.fail.ts.
-  const program = createProgram(['./typings/setter.fail.ts'], { noEmit: true, strict: true });
+  const program = createProgram({ compiler, rootNames: ['./typings/setter.fail.ts'], options: {} });
 
   // WHEN: Compile.
   const { diagnostics } = program.emit();
