@@ -3,15 +3,15 @@ import { before, test } from 'node:test';
 import { createCompilerHost, createProgram, flattenDiagnosticMessageText, getPreEmitDiagnostics } from 'typescript';
 
 /** @type {ReturnType<typeof createCompilerHost>} */
-let compiler;
+let host;
 
 before(() => {
-  compiler = createCompilerHost({ noEmit: true, strict: true });
+  host = createCompilerHost({ noEmit: true, strict: true });
 });
 
 test('typings should work', () => {
   // GIVEN: TypeScript compiler to compile ./typings/simple.ts.
-  const program = createProgram({ compiler, rootNames: ['./typings/simple.ts'], options: {} });
+  const program = createProgram({ host, options: {}, rootNames: ['./typings/simple.ts'] });
 
   // WHEN: Compile.
   const { diagnostics } = program.emit();
@@ -25,7 +25,7 @@ test('typings should work', () => {
 
 test('setter should fail', () => {
   // GIVEN: TypeScript compiler to compile ./typings/setter.fail.ts.
-  const program = createProgram({ compiler, rootNames: ['./typings/setter.fail.ts'], options: {} });
+  const program = createProgram({ host, options: {}, rootNames: ['./typings/setter.fail.ts'] });
 
   // WHEN: Compile.
   const { diagnostics } = program.emit();
