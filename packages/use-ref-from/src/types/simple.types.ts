@@ -1,6 +1,7 @@
-import useRefFrom from '../useRefFrom.ts';
+import { useRefFrom } from '../index.ts';
 
-useRefFrom(1) satisfies { readonly current: number };
+// eslint-disable-next-line react-hooks/rules-of-hooks
+const ref = useRefFrom<number>(123);
+const value: number = ref.current;
 
-// @ts-expect-error Type 'number' is not assignable to type 'string'.
-useRefFrom(1) satisfies { readonly current: string };
+console.log(value);
