@@ -81,7 +81,9 @@ async function checkExpectError(filename: string) {
         }
       } catch {}
 
-      expect(message).toEqual(expect.stringMatching(new RegExp(expectedErrors.map(escapeStringRegexp).join('|'))));
+      expect(message).toEqual(
+        expect.stringMatching(new RegExp(expectedErrors.map(value => escapeStringRegexp(value ?? '')).join('|')))
+      );
     } else {
       throw new Error(flattenDiagnosticMessageText(messageText, '\n'));
     }

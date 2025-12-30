@@ -2,7 +2,7 @@
 let renderHook;
 
 try {
-  // eslint-disable-next-line import/no-unresolved
+  // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
   ({ renderHook } = await import('@testing-library/react-hooks'));
 } catch {
   ({ renderHook } = await import('@testing-library/react'));
