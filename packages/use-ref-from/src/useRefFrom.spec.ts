@@ -2,8 +2,11 @@
 
 /// <reference types="jest" />
 
-import { useCallback } from 'react';
+import React from 'react';
 import useRefFrom from './useRefFrom';
+
+// Need to destructure instead of import for React < 16.14.0.
+const { useCallback } = React;
 
 const renderHook: <T, P>(
   render: (props: P) => T,
