@@ -1,6 +1,6 @@
-/** @jest-environment jsdom */
-
-import { renderHook } from '@testing-library/react';
+import { renderHook } from '@compulim/test-harness/renderHook';
+import { expect } from 'expect';
+import { test } from 'node:test';
 import { useRefFrom } from 'use-ref-from';
 
 test('simple scenario', () => {

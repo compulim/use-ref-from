@@ -1,6 +1,6 @@
-/** @jest-environment jsdom */
-
-const { renderHook } = require('@testing-library/react');
+const { renderHook } = require('@compulim/test-harness/renderHook');
+const { expect } = require('expect');
+const { test } = require('node:test');
 const { useRefFrom } = require('use-ref-from');
 
 test('simple scenario', () => {
