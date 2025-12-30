@@ -3,7 +3,7 @@ import { registerHooks } from 'node:module';
 import { resolve } from 'node:path';
 import { fileURLToPath, URL } from 'node:url';
 
-const stub = (await readFile(resolve(fileURLToPath(import.meta.url), '../stub.mts'))).toString();
+const stub = (await readFile(resolve(fileURLToPath(import.meta.url), '../typing-test.stub.mts'))).toString();
 
 registerHooks({
   load(
