@@ -1,4 +1,4 @@
-import useRefFrom from '../src/useRefFrom.ts';
+import useRefFrom from '../useRefFrom.ts';
 
 useRefFrom(1) satisfies { readonly current: number };
 
