@@ -3,6 +3,9 @@
   "version": "0.0.0-0",
   "description": "",
   "private": true,
+  "files": [
+    "./src/**/*"
+  ],
   "exports": {
     "./act": {
       "import": {
@@ -25,7 +28,6 @@
         "types": "./src/renderHook.d.ts"
       }
     },
-    "./typing-test.import": "./src/typing-test.import.mjs",
     "./test-types.import": "./src/test-types.import.mjs"
   },
   "scripts": {
@@ -117,8 +119,5 @@
     "react-test-renderer": "^18.3.1",
     "resolve-cwd": "^3.0.0",
     "typescript": "^5.9.3"
-  },
-  "files": [
-    "./src/**/*"
-  ]
+  }
 }
