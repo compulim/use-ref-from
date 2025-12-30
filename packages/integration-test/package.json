@@ -57,9 +57,11 @@
     ]
   },
   "localPeerDependencies": {
+    "@compulim/test-harness": "0.0.0-0",
     "use-ref-from": "0.0.0-0"
   },
   "devDependencies": {
+    "@compulim/test-harness": "0.0.0-0",
     "@testduet/wait-for": "^0.1.0",
     "@tsconfig/strictest": "^2.0.5",
     "@types/react": "^18.3.11",
