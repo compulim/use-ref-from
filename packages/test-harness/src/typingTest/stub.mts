@@ -1,9 +1,9 @@
 import escapeStringRegexp from 'escape-string-regexp';
 import { expect } from 'expect';
-import fs from 'fs/promises';
+import { readFileSync } from 'fs';
 import { describe, test } from 'node:test';
-import { extname } from 'path';
 import {
+  createCompilerHost,
   createProgram,
   flattenDiagnosticMessageText,
   getPreEmitDiagnostics,
@@ -53,45 +53,39 @@ async function compile(filename: string) {
 }
 
 async function checkExpectError(filename: string) {
-  const sourceText = await fs.readFile(filename, 'utf-8');
-  const sourceTextWithoutExpectError = sourceText.replace(TS_EXPECT_ERROR, '$1');
+  const host = createCompilerHost({});
 
-  const extension = extname(filename);
-  const tempFilename = filename.substring(0, filename.length - extension.length) + `.tmp${extension}`;
+  host.readFile = path => readFileSync(path).toString().replace(TS_EXPECT_ERROR, '$1');
 
-  await fs.writeFile(tempFilename, sourceTextWithoutExpectError);
+  const program = createProgram({ host, options: TSCONFIG, rootNames: [filename] });
 
-  try {
-    const program = createProgram([tempFilename], TSCONFIG);
+  const emitResult = program.emit();
+  const allDiagnostics = getPreEmitDiagnostics(program).concat(emitResult.diagnostics);
 
-    const emitResult = program.emit();
-    const allDiagnostics = getPreEmitDiagnostics(program).concat(emitResult.diagnostics);
+  allDiagnostics.forEach(({ file, messageText, start }) => {
+    if (file && start) {
+      const { line } = file.getLineAndCharacterOfPosition(start);
+      const message = flattenDiagnosticMessageText(messageText, '\n');
 
-    allDiagnostics.forEach(({ file, messageText, start }) => {
-      if (file && start) {
-        const { line } = file.getLineAndCharacterOfPosition(start);
-        const message = flattenDiagnosticMessageText(messageText, '\n');
+      const expectedErrorLine = file.getFullText().split('\n')[line - 1];
+      const expectedError = expectedErrorLine?.replace(/\s*\/\/\s+/u, '').trim();
+      let expectedErrors = [expectedError];
 
-        const expectedErrorLine = file.getFullText().split('\n')[line - 1];
-        const expectedError = expectedErrorLine?.replace(/\s*\/\/\s+/u, '').trim();
-        let expectedErrors = [expectedError];
-
-        try {
+      try {
+        if (expectedError) {
           const parsed = JSON.parse(expectedError);
 
           if (Array.isArray(expectedErrors) && expectedErrors.every(value => typeof value === 'string')) {
             expectedErrors = parsed;
           }
-        } catch {}
+        }
+      } catch {}
 
-        expect(message).toEqual(expect.stringMatching(new RegExp(expectedErrors.map(escapeStringRegexp).join('|'))));
-      } else {
-        throw new Error(flattenDiagnosticMessageText(messageText, '\n'));
-      }
-    });
-  } finally {
-    fs.unlink(tempFilename);
-  }
+      expect(message).toEqual(expect.stringMatching(new RegExp(expectedErrors.map(escapeStringRegexp).join('|'))));
+    } else {
+      throw new Error(flattenDiagnosticMessageText(messageText, '\n'));
+    }
+  });
 }
 
 describe(FILENAME, () => {
